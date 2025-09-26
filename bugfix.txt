@@ -1,0 +1,1 @@
+This file contains the documentation about the bug and resolution.
