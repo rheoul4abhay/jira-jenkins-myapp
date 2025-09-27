@@ -4,9 +4,18 @@ pipeline {
     }
     stages {
         stage('Build') {
+	    when {
+	        anyOf {
+		    branch 'main'
+		    branch pattern: "feature/JW-[0-9]+.*", comparator: "REGEXP"
+		}
+	    }
             steps {
-                echo "Building on slave node"
-                sh 'python3 app.py'
+                echo "Building application on branch ${env.BRANCH_NAME}"
+		sh '''
+		    docker build -t my-flask-app .
+		    docker run -d -p 5000:5000 my-flask-app
+		'''
             }
         }
     }
