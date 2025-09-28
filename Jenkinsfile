@@ -13,8 +13,8 @@ pipeline {
             steps {
                 echo "Building application on branch ${env.BRANCH_NAME}"
 		sh '''
-		    docker build -t my-flask-app .
-		    docker run -d -p 5000:5000 my-flask-app
+		    sudo docker build -t my-flask-app .
+		    sudo docker run -d -p 5000:5000 my-flask-app
 		'''
             }
         }
