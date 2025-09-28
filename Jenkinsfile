@@ -1,4 +1,11 @@
 pipeline {
+    
+    properties([
+	pipelineTriggers([
+	githubPush()
+ 	 ])
+    ])
+
     agent {
         label 'docker-node'
     }
